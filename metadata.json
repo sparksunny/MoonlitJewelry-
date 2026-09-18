@@ -1,0 +1,6 @@
+{
+  "name": "Moonlit Jewelry",
+  "description": "Real Jewelry. Natural Stones. Timeless Beauty. A digital luxury Pakistani jewelry showcase and inquiry platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
