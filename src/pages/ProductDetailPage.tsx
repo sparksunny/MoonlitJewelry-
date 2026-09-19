@@ -107,6 +107,12 @@ export const ProductDetailPage: React.FC = () => {
               src={activeImage || selectedProduct.mainImage}
               alt={selectedProduct.name}
               referrerPolicy="no-referrer"
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.includes('photo-1599643478518')) {
+                  target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80';
+                }
+              }}
               className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
             />
 
@@ -145,6 +151,12 @@ export const ProductDetailPage: React.FC = () => {
                     src={imgUrl}
                     alt={`${selectedProduct.name} view ${idx + 1}`}
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('photo-1599643478518')) {
+                        target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=400&q=80';
+                      }
+                    }}
                     className="w-full h-full object-cover"
                   />
                 </button>

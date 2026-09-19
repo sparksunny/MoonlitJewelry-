@@ -65,15 +65,6 @@ export const HomePage: React.FC = () => {
                   <span>Explore Collections</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#B89058]" />
                 </button>
-
-                <button
-                  id="hero-inquire-btn"
-                  onClick={() => openInquiry()}
-                  className="px-6 py-3.5 bg-[#F2E7D8] hover:bg-[#EADBCA] border border-[#D5C2AA] text-[#2C221E] text-xs uppercase tracking-[0.16em] font-sans font-semibold rounded-xs transition-all duration-200 cursor-pointer flex items-center gap-2"
-                >
-                  <MessageSquare className="w-3.5 h-3.5 text-[#B89058]" />
-                  <span>Inquire Now</span>
-                </button>
               </div>
 
               {/* Trust markers */}
@@ -100,6 +91,12 @@ export const HomePage: React.FC = () => {
                     src={content.homeHeroImage}
                     alt="Pakistani model in exquisite emerald jewelry and luxury attire"
                     referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      if (!target.src.includes('photo-1599643478518')) {
+                        target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80';
+                      }
+                    }}
                     className="w-full h-full object-cover object-top"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#2C221E]/40 via-transparent to-transparent opacity-60" />
@@ -143,6 +140,12 @@ export const HomePage: React.FC = () => {
                   src={content.homeIntroImage}
                   alt="Pakistani female model wearing handcrafted ruby pendant and gold rings"
                   referrerPolicy="no-referrer"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.src.includes('photo-1601121141461')) {
+                      target.src = 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80';
+                    }
+                  }}
                   className="w-full h-full object-cover object-center"
                 />
               </div>

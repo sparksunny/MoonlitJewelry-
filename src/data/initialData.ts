@@ -15,7 +15,7 @@ export const initialProducts: Product[] = [
     mainImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80',
     galleryImages: [
       'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1611591475819-322e705b7662?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1200&q=80'
     ],
     material: '22K Solid Yellow Gold',
@@ -44,7 +44,7 @@ export const initialProducts: Product[] = [
     mainImage: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80',
     galleryImages: [
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1611591475819-322e705b7662?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=1200&q=80'
     ],
     material: '21K Yellow Gold',
     gemstone: 'Natural Burma Rubies',
@@ -97,10 +97,10 @@ export const initialProducts: Product[] = [
     price: '$5,400',
     shortText: 'Pair of artisanal Pakistani bridal kadas sculpted in 22K gold with fine floral jaali engraving and natural emeralds.',
     description: 'These statement kadas are crafted with openable screw clasps for an effortless bespoke fit. Features hand-chiseled Mughal foliage motifs studded with natural cabochon emeralds and rubies.',
-    mainImage: 'https://images.unsplash.com/photo-1611591475819-322e705b7662?auto=format&fit=crop&w=1200&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80',
     galleryImages: [
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80',
-      'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=1200&q=80'
     ],
     material: '22K Solid Yellow Gold',
     gemstone: 'Natural Emeralds & Rubies',
@@ -126,7 +126,7 @@ export const initialProducts: Product[] = [
     description: 'Designed for wedding festivities or formal Pakistani evening attire, featuring alternating natural Colombian emerald baguettes and fine round brilliant diamonds in channel setting.',
     mainImage: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=1200&q=80',
     galleryImages: [
-      'https://images.unsplash.com/photo-1611591475819-322e705b7662?auto=format&fit=crop&w=1200&q=80'
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80'
     ],
     material: '18K Yellow Gold',
     gemstone: 'Natural Emerald & Diamonds',
@@ -425,7 +425,7 @@ export const initialProducts: Product[] = [
     price: '$3,200',
     shortText: 'Tiered 18K gold earrings with octagonal natural emeralds suspended beneath a cluster of brilliant-cut diamonds.',
     description: 'Understated elegance created to frame the face with subtle green flashes. Secured with comfortable screw-back posts designed for all-day gala comfort.',
-    mainImage: 'https://images.unsplash.com/photo-1611591475819-322e705b7662?auto=format&fit=crop&w=1200&q=80',
+    mainImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=1200&q=80',
     galleryImages: [
       'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=1200&q=80'
     ],
@@ -599,10 +599,10 @@ export const initialSiteContent: SiteContent = {
   // Home Page
   homeHeroHeading: 'Real Jewelry.\nNatural Stones.\nTimeless Beauty.',
   homeHeroSubheading: 'Discover refined jewelry crafted to celebrate beauty, individuality and meaningful moments.',
-  homeHeroImage: '/src/assets/images/hero_pakistani_jewelry_1789754830725.jpg',
+  homeHeroImage: '/images/hero_pakistani_jewelry_1789754830725.jpg',
   homeIntroHeading: 'Timeless Beauty, Thoughtfully Crafted',
   homeIntroText: 'Moonlit Jewelry brings together real jewelry, natural gemstones and refined craftsmanship to create pieces designed for memorable moments.',
-  homeIntroImage: '/src/assets/images/intro_pakistani_model_1789754847160.jpg',
+  homeIntroImage: '/images/intro_pakistani_model_1789754847160.jpg',
   craftsmanshipHeading: 'Craftsmanship You Can Trust',
   craftsmanshipSubtext: 'Every creation at Moonlit Jewelry honors centuries of goldsmithing heritage, utilizing uncompromised genuine precious metals and certified natural stones.',
   certificationHeading: 'Certification & Authenticity',
@@ -610,18 +610,18 @@ export const initialSiteContent: SiteContent = {
   // Bridal
   bridalHeroHeading: 'Jewelry for Your Most Beautiful Moments',
   bridalHeroText: 'Celebrating Pakistani bridal heritage with regal chokers, raani haars, and handcrafted heirloom jewels designed for lehengas, ghararas, and dupattas.',
-  bridalHeroImage: '/src/assets/images/bridal_pakistani_hero_1789754863885.jpg',
+  bridalHeroImage: '/images/bridal_pakistani_hero_1789754863885.jpg',
   // Pendants & Necklace
   pendantsHeroHeading: 'Grace in Every Detail',
   pendantsHeroText: 'From subtle everyday natural stone pendants to magnificent bridal chokers, each silhouette is sculpted to grace the neckline with refined distinction.',
-  pendantsHeroImage: '/src/assets/images/pendant_model_hero_1789754899675.jpg',
+  pendantsHeroImage: '/images/pendant_model_hero_1789754899675.jpg',
   // Rings
   ringsHeroHeading: 'Expressions of Eternal Grace',
   ringsHeroText: 'Artisanal rings and earrings featuring natural emeralds, rubies, sapphires, fine diamonds and ethical moissanite.',
   // Gemstones
   gemstonesHeroHeading: 'Earth’s Most Extraordinary Treasures',
   gemstonesHeroText: 'Sourced directly from famed origins including the Swat Valley of Pakistan, Colombian highlands, Sri Lanka and Burma. Hand-selected for collectors and bespoke jewelry commissions.',
-  gemstonesHeroImage: '/src/assets/images/luxury_gemstones_still_1789754880411.jpg',
+  gemstonesHeroImage: '/images/luxury_gemstones_still_1789754880411.jpg',
   // Footer
   footerText: 'Moonlit Jewelry represents the synthesis of authentic Pakistani jewelry heritage, certified natural gemstones, and bespoke client attention. We operate strictly as an inquiry and showcase atelier.'
 };

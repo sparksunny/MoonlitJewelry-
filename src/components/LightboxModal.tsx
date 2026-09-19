@@ -49,6 +49,12 @@ export const LightboxModal: React.FC = () => {
             src={lightbox.currentSrc}
             alt="Jewelry High Resolution View"
             referrerPolicy="no-referrer"
+            onError={(e) => {
+              const target = e.currentTarget;
+              if (!target.src.includes('photo-1599643478518')) {
+                target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80';
+              }
+            }}
             className="max-w-full max-h-[80vh] object-contain rounded-xs shadow-2xl border border-[#D5C2AA]/40"
           />
         </div>

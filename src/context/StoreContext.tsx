@@ -33,36 +33,68 @@ interface StoreContextType {
 
 const StoreContext = createContext<StoreContextType | undefined>(undefined);
 
-const STORAGE_KEY_PRODUCTS = 'moonlit_jewelry_products_v1';
-const STORAGE_KEY_CONTENT = 'moonlit_jewelry_content_v1';
+const STORAGE_KEY_PRODUCTS = 'moonlit_jewelry_products_v2';
+const STORAGE_KEY_CONTENT = 'moonlit_jewelry_content_v2';
 const STORAGE_KEY_AUTH = 'moonlit_jewelry_admin_auth_v1';
+
+// URL sanitizer to heal any stale cached paths
+const sanitizeImageUrl = (url: string): string => {
+  if (!url) return url;
+  if (url.startsWith('/src/assets/images/')) {
+    return url.replace('/src/assets/images/', '/images/');
+  }
+  if (url.includes('photo-1611591475819-322e705b7662')) {
+    return 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&w=1200&q=80';
+  }
+  return url;
+};
+
+const sanitizeProduct = (p: Product): Product => ({
+  ...p,
+  mainImage: sanitizeImageUrl(p.mainImage),
+  galleryImages: (p.galleryImages || []).map(sanitizeImageUrl),
+});
+
+const sanitizeSiteContent = (c: SiteContent): SiteContent => ({
+  ...c,
+  homeHeroImage: sanitizeImageUrl(c.homeHeroImage),
+  homeIntroImage: sanitizeImageUrl(c.homeIntroImage),
+  bridalHeroImage: sanitizeImageUrl(c.bridalHeroImage),
+  pendantsHeroImage: sanitizeImageUrl(c.pendantsHeroImage),
+  gemstonesHeroImage: sanitizeImageUrl(c.gemstonesHeroImage),
+  logoUrl: sanitizeImageUrl(c.logoUrl),
+});
 
 export const StoreProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Load products
   const [products, setProducts] = useState<Product[]>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_PRODUCTS);
+      // Check v2, fallback to v1 migration
+      const saved = localStorage.getItem(STORAGE_KEY_PRODUCTS) || localStorage.getItem('moonlit_jewelry_products_v1');
       if (saved) {
         const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          return parsed.map(sanitizeProduct);
+        }
       }
     } catch (e) {
       console.error('Error loading products from localStorage', e);
     }
-    return initialProducts;
+    return initialProducts.map(sanitizeProduct);
   });
 
   // Load site content
   const [content, setContent] = useState<SiteContent>(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY_CONTENT);
+      const saved = localStorage.getItem(STORAGE_KEY_CONTENT) || localStorage.getItem('moonlit_jewelry_content_v1');
       if (saved) {
-        return { ...initialSiteContent, ...JSON.parse(saved) };
+        const merged = { ...initialSiteContent, ...JSON.parse(saved) };
+        return sanitizeSiteContent(merged);
       }
     } catch (e) {
       console.error('Error loading site content from localStorage', e);
     }
-    return initialSiteContent;
+    return sanitizeSiteContent(initialSiteContent);
   });
 
   // Page routing

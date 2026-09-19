@@ -84,6 +84,12 @@ export const GemstonesPage: React.FC = () => {
                 src={content.gemstonesHeroImage}
                 alt="Certified loose natural emeralds, rubies, and sapphires with tweezers and certificate card"
                 referrerPolicy="no-referrer"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.src.includes('photo-1599643478518')) {
+                    target.src = 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80';
+                  }
+                }}
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#2C221E]/40 via-transparent to-transparent opacity-60" />

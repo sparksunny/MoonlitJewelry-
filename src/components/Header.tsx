@@ -20,8 +20,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems: { label: string; route: PageRoute }[] = [
+  const navItems: { label: string; route?: PageRoute; isAbout?: boolean }[] = [
     { label: 'Home', route: 'home' },
+    { label: 'About', isAbout: true },
     { label: 'Bridal Jewelry', route: 'bridal' },
     { label: 'Pendants & Necklace', route: 'pendants' },
     { label: 'Rings', route: 'rings' },
@@ -30,6 +31,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
 
   const handleNavClick = (route: PageRoute) => {
     navigate(route);
+    setMobileMenuOpen(false);
+  };
+
+  const handleItemClick = (item: { label: string; route?: PageRoute; isAbout?: boolean }) => {
+    if (item.isAbout) {
+      onOpenAbout();
+    } else if (item.route) {
+      handleNavClick(item.route);
+    }
     setMobileMenuOpen(false);
   };
 
@@ -77,12 +87,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
             {/* CENTER: Desktop Navigation */}
             <nav id="desktop-nav" className="hidden lg:flex items-center space-x-7" aria-label="Main Navigation">
               {navItems.map((item) => {
-                const isActive = activePage === item.route;
+                const isActive = item.route ? activePage === item.route : false;
                 return (
                   <button
-                    key={item.route}
-                    id={`nav-link-${item.route}`}
-                    onClick={() => handleNavClick(item.route)}
+                    key={item.label}
+                    id={`nav-link-${item.route || 'about'}`}
+                    onClick={() => handleItemClick(item)}
                     className={`text-[13px] tracking-[0.14em] uppercase font-sans transition-all duration-200 py-1 relative cursor-pointer ${
                       isActive
                         ? 'text-[#2C221E] font-semibold'
@@ -99,42 +109,18 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
             </nav>
 
             {/* RIGHT: Actions */}
-            <div className="hidden lg:flex items-center space-x-5">
-              <button
-                id="header-about-btn"
-                onClick={onOpenAbout}
-                className="text-[12px] tracking-[0.14em] uppercase font-sans text-[#7A6E65] hover:text-[#2C221E] transition-colors cursor-pointer"
-              >
-                About
-              </button>
-
+            <div className="hidden lg:flex items-center space-x-6">
               <button
                 id="header-contact-btn"
                 onClick={() => handleNavClick('contact')}
-                className="text-[12px] tracking-[0.14em] uppercase font-sans text-[#7A6E65] hover:text-[#2C221E] transition-colors cursor-pointer"
+                className="text-[12px] tracking-[0.16em] uppercase font-sans font-medium text-[#7A6E65] hover:text-[#B89058] transition-colors cursor-pointer"
               >
-                Contact
-              </button>
-
-              <button
-                id="header-inquire-btn"
-                onClick={() => openInquiry()}
-                className="inline-flex items-center gap-1.5 text-[11px] tracking-[0.18em] uppercase font-sans font-semibold text-[#2C221E] bg-[#F2E7D8] hover:bg-[#EADBCA] border border-[#D5C2AA] px-4 py-2 rounded-xs transition-all duration-200 shadow-2xs hover:shadow-xs cursor-pointer"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-[#B89058]" />
-                <span>Inquire Now</span>
+                Contact & Showroom
               </button>
             </div>
 
             {/* Mobile Hamburger Toggle */}
             <div className="flex items-center gap-2 lg:hidden">
-              <button
-                id="header-mobile-inquire-btn"
-                onClick={() => openInquiry()}
-                className="text-[10px] tracking-[0.14em] uppercase font-sans font-semibold text-[#2C221E] bg-[#F2E7D8] border border-[#D5C2AA] px-2.5 py-1.5 rounded-xs"
-              >
-                Inquire
-              </button>
               <button
                 id="header-menu-toggle"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -161,15 +147,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
           >
             <div className="space-y-4">
               <p className="text-[10px] tracking-[0.24em] uppercase text-[#7A6E65] font-semibold border-b border-[#E6DACB] pb-2">
-                Collections & Pages
+                Navigation & Collections
               </p>
               {navItems.map((item) => (
                 <button
-                  key={item.route}
-                  id={`mobile-nav-${item.route}`}
-                  onClick={() => handleNavClick(item.route)}
+                  key={item.label}
+                  id={`mobile-nav-${item.route || 'about'}`}
+                  onClick={() => handleItemClick(item)}
                   className={`w-full flex items-center justify-between text-left py-2.5 text-sm tracking-[0.12em] uppercase font-sans border-b border-[#F2E7D8] cursor-pointer ${
-                    activePage === item.route ? 'text-[#B89058] font-bold' : 'text-[#2C221E]'
+                    item.route && activePage === item.route ? 'text-[#B89058] font-bold' : 'text-[#2C221E]'
                   }`}
                 >
                   <span>{item.label}</span>
@@ -177,18 +163,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
                 </button>
               ))}
 
-              <div className="pt-3 space-y-3">
-                <button
-                  id="mobile-nav-about"
-                  onClick={() => {
-                    onOpenAbout();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full text-left py-2 text-xs tracking-[0.14em] uppercase text-[#5C5048] flex items-center justify-between"
-                >
-                  <span>Our Heritage & Craft</span>
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
+              <div className="pt-2 space-y-2">
                 <button
                   id="mobile-nav-contact"
                   onClick={() => handleNavClick('contact')}
@@ -200,17 +175,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenAbout }) => {
               </div>
 
               <div className="pt-4 border-t border-[#E6DACB] space-y-2">
-                <button
-                  id="mobile-inquire-full-btn"
-                  onClick={() => {
-                    openInquiry();
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full py-3 bg-[#2C221E] text-[#F8F1E8] text-xs uppercase tracking-[0.18em] font-semibold text-center rounded-xs shadow-xs"
-                >
-                  Inquire About Jewelry
-                </button>
-
                 <a
                   id="mobile-whatsapp-header-btn"
                   href={`https://wa.me/${content.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(
